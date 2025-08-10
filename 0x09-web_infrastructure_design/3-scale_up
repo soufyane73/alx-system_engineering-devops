@@ -1,0 +1,20 @@
+# 3. Scale up
+
+## Diagram
+
+[Diagram](./diagram3.png)
+
+## Explanation
+
+This setup further scales the infrastructure:
+- **1 additional server**: For splitting components.
+- **2 load balancers (HAProxy)**: Clustered for high availability.
+- **Dedicated servers**: Separate servers for web, application, and database layers.
+
+### Components
+- **Load Balancer Cluster**: Two HAProxy instances in Active-Active or Active-Passive mode for redundancy.
+- **Split Components**: Web server, application server, and database each on their own server for better performance and isolation.
+
+### Reason for Each Addition
+- **Load Balancer Cluster**: Prevents SPOF at the load balancer level.
+- **Split Components**: Allows independent scaling and maintenance of each layer.
