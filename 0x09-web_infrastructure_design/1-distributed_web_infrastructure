@@ -1,1 +1,29 @@
+# 1. Distributed web infrastructure
 
+## Diagram
+
+[Diagram](./diagram1.png)
+
+## Explanation
+
+This setup uses three servers:
+- **2 servers** for web and application layers
+- **1 server** for the database (MySQL)
+- **1 load balancer (HAProxy)** distributes traffic
+
+### Components
+- **Load Balancer (HAProxy)**: Distributes incoming requests between the two web servers. Common algorithm: Round Robin (each request goes to the next server in turn).
+- **Web Server (Nginx)**: Handles HTTP requests, serves static files, and forwards dynamic requests.
+- **Application Server**: Runs the application code.
+- **Application Files**: Shared or replicated codebase.
+- **Database (MySQL)**: Can be set up as a Primary-Replica (Master-Slave) cluster for redundancy.
+
+### Details
+- **Load Balancer Setup**: Can be Active-Active (both servers handle traffic) or Active-Passive (one is standby). Active-Active increases availability and load distribution.
+- **Primary-Replica Database**: Primary handles writes, replicas handle reads. Replicas sync from the primary.
+- **Difference**: Application writes to primary, reads can be distributed to replicas.
+
+### Issues
+- **SPOF**: Load balancer and database primary are SPOFs.
+- **Security**: No firewall or HTTPS.
+- **Monitoring**: Not implemented.
