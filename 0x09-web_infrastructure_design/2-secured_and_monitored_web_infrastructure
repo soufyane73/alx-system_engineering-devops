@@ -1,1 +1,23 @@
+# 2. Secured and monitored web infrastructure
 
+## Diagram
+
+[Diagram](./diagram2.png)
+
+## Explanation
+
+This setup adds security and monitoring:
+- **3 firewalls**: One for each server, restricts unauthorized access.
+- **SSL certificate**: Enables HTTPS for secure communication.
+- **3 monitoring clients**: Collect data for monitoring (e.g., Sumologic agents).
+
+### Components
+- **Firewalls**: Protect servers from unauthorized access.
+- **HTTPS/SSL**: Encrypts traffic between users and the web server.
+- **Monitoring**: Collects metrics (CPU, memory, QPS, etc.) and sends to a monitoring service.
+- **QPS Monitoring**: Configure monitoring tool to track web server queries per second.
+
+### Issues
+- **SSL Termination at Load Balancer**: Traffic between load balancer and backend may be unencrypted.
+- **Single MySQL Writer**: Only one server can accept writes, limiting redundancy.
+- **Identical Servers**: If all servers have all components, a compromise affects everything.
