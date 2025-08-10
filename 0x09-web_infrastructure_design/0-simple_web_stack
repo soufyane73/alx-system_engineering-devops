@@ -1,1 +1,24 @@
+# 0. Simple web stack
 
+## Diagram
+
+[Diagram](diagram0.png)
+
+## Explanation
+
+A user wants to access `www.foobar.com`. The request goes through the following components:
+
+- **Server**: A physical or virtual machine with an IP address (8.8.8.8) hosting all components.
+- **Domain Name**: `foobar.com` is mapped to the server's IP using DNS. The `www` in `www.foobar.com` is a subdomain, and its DNS record is a type A record pointing to 8.8.8.8.
+- **Web Server (Nginx)**: Receives HTTP requests from users, serves static content, and forwards dynamic requests to the application server.
+- **Application Server**: Runs the application code (e.g., PHP, Python, Node.js) and processes dynamic requests.
+- **Application Files**: The codebase for the website, executed by the application server.
+- **Database (MySQL)**: Stores and manages data for the application.
+
+### Communication
+- The server communicates with the user's computer over the internet using HTTP/HTTPS protocols.
+
+### Issues
+- **SPOF (Single Point of Failure)**: If the server fails, the website is down.
+- **Downtime for Maintenance**: Restarting the web server or deploying new code causes downtime.
+- **Scalability**: Cannot handle high traffic; limited by single server resources.
